@@ -20,7 +20,7 @@ def login():
     formlogin = Formlogin()
     if formlogin.validate_on_submit():
         usuario = Usuario.query.filter_by(email=formlogin.email.data).first()
-        if usuario and bcrypt.check_password_hash(usuario.senha, formlogin.senha.data):
+        if usuario and usuario.senha == formlogin.senha.data: #bcrypt.check_password_hash(usuario.senha,formlogin.senha.data):
             login_user(usuario, remember=True)
             return redirect(url_for("perfil", variavel=usuario.id))
 
@@ -31,7 +31,7 @@ def login():
 def cadastro():
     formcadastro = Formcriarconta()
     if formcadastro.validate_on_submit():
-        senha = bcrypt.generate_password_hash(formcadastro.senha.data)
+        senha = formcadastro.senha.data #bcrypt.generate_password_hash(formcadastro.senha.data)
         usuario = Usuario(nome=formcadastro.nome.data, email=formcadastro.email.data, senha=senha)
         database.session.add(usuario)
         database.session.commit()
