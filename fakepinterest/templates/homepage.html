@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>fake pinterest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fakepinterest</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 </head>
 <body>
-<h1>homepage of my site</h1>
+
+    <nav>
+        <div class="title">
+            <h1>FakePinterest</h1>
+        </div>
+        <div class="list-conteiner">
+            <ul class="list">
+                <li><a href="{{ url_for('homepage') }}"> home </a></li>
+                <li><a href="{{ url_for('login')}}"> login</a></li>
+                <li><a href="{{ url_for('cadastro') }}"> cadastro </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section class="galeria">
+            {% for foto in fotos %}
+
+                <div class="foto">
+                     <img src="{{ url_for('static', filename='midia/{}'.format(foto.imagem)) }}">
+                </div>
+               
+            {% endfor%}
+
+        </section>
+    </main>
 </body>
 </html>

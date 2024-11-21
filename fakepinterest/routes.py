@@ -11,7 +11,8 @@ from werkzeug.utils import secure_filename
 
 @app.route("/")
 def homepage():
-    return render_template("homepage.html")
+    foto = Foto.query.order_by(Foto.data.desc())[:3]
+    return render_template("homepage.html",fotos=foto)
 
 
 @app.route("/login", methods=["GET", "POST"])
