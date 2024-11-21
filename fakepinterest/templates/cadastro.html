@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+</head>
+<body>
+    <main>
+        <div class="principal">
+            <form method="post"  class="conteiner">
+                {{ form.csrf_token }}
+                
+                <div>
+                    {{ form.email.label() }}
+                    {{ form.email(class="input") }}
+                </div>
+
+                <div>
+                    {{ form.nome.label() }}
+                    {{ form.nome(class="input") }}
+                </div>
+
+                <div>
+                    {{ form.senha.label() }}
+                    {{ form.senha(class="input") }}
+                </div>
+
+                <div>
+                    {{ form.confirmacao_senha.label() }}
+                    {{ form.confirmacao_senha(class="input") }}
+                </div>
+
+                <div>
+                    {{ form.botao(class="bottun") }}
+                </div>
+
+            </form>
+
+            <p>ja tem uma conta?<a href="{{url_for('login')}}"> faca login</a></p>
+        </div>
+    </main>
+</body>
+</html>

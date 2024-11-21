@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>perfil</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/perfil.css')}}">
+</head>
+<body>
+    <nav>
+        <div class="con-logo">
+            <div class="logo">lodo</div>
+        </div>
+
+
+        <div class="con-list">
+            <ul class="list">
+                <li><a href="{{ url_for('homepage') }}"> home </a></li>
+                <li><a href="{{ url_for('feed')}}"> feed</a></li>
+                <li><a href="{{ url_for('logout') }}"> logout </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="info">
+            <h1>{{usuario.nome}} : {{email.email}}</h1>
+
+            <div>
+                {% if form %}
+                    <form method="post" enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+
+                        {{ form.foto(class="file") }}
+                        
+                        {{ form.botao(class="button") }}
+                    </form>
+                    {% endif %}
+            </div>
+        </section>
+        
+
+        <section class="galeria">
+            {% for foto in usuario.foto %}
+
+                <div class="foto">
+                     <img src="{{ url_for('static', filename='midia/{}'.format(foto.imagem)) }}">
+                </div>
+               
+            {% endfor%}
+
+        </section>
+    </main>
+
+</body>
+</html>
